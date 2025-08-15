@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"11b3c5087ac099a5","type":"text","text":"what does card can do?\n","x":-530,"y":-480,"width":250,"height":60},
+		{"id":"da70f5c993ff5702","type":"file","file":"02 思路/Unsorted.md","x":-530,"y":140,"width":400,"height":400}
+	],
+	"edges":[]
+}
