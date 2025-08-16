@@ -4,7 +4,7 @@ tags: []
 source: https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_04.xhtml#_idParaDest-87
 author: 
 ---
-
+.0000000000b
 # Chapter 4: Writing and Building a ROS 2 Node | ROS 2 from Scratch
 
 > ## Excerpt
