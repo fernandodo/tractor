@@ -500,7 +500,7 @@ return rclcpp_action::GoalResponse::ACCEPT_AND_EXECUTE;
 
 The next callback method is the cancel callback, in which you can decide whether to accept or reject an incoming cancel request. As I will explain the cancel mechanism later in this chapter, I will skip this part now—you just have to write the callback so that the code can compile.
 
-The most important callback here is the execute callback. In this method, we receive a goal handle (**const std::shared\_ptr<CountUntilGoalHandle> goal\_handle**). The first thing we must do is extract the data from the goal and initialize a few things:
+The most important callback here is the execute callback. In this method, we receive a goal handle (`const std::shared\_ptr<CountUntilGoalHandle> goal\_handle`). The first thing we must do is extract the data from the goal and initialize a few things:
 
 ```
 int target_number = goal_handle-&gt;get_goal()-&gt;target_number;
