@@ -1,31 +1,44 @@
+---
+title: "Chapter 10: Discovering TFs with RViz"
+source: "https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_10.xhtml#_idParaDest-252"
+author:
+  - "[[Edouard Renard]]"
+published:
+created: 2025-08-18
+description: "10			Discovering TFs with RViz			 In Part 3 of this book, you will create a robot simulation with ROS 2. However, before you get started, you first need to understand what TransForms..."
+tags:
+  - "clippings"
+---
+## 10
+
 ## Discovering TFs with RViz
 
-In _Part 3_ of this book, you will create a robot simulation with ROS 2. However, before you get started, you first need to understand what **TransForms** (**TFs**) are.
+In *Part 3* of this book, you will create a robot simulation with ROS 2. However, before you get started, you first need to understand what **TransForms** (**TFs**) are.
 
 In ROS, a TF is the transformation between two frames in 3D space. TFs will be used to track the different coordinate frames of a ROS robot (or system with multiple robots) over time. They are used everywhere and will be the backbone of any robot you create.
 
-To understand TFs, we will first look at an existing robot model. As we did back in [_Chapter 3_](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_03.xhtml#_idTextAnchor095), here, we will discover the concepts by experimenting, and you will build an intuition of how things work. During this phase, you will discover a few new ROS tools, including **RViz**, a 3D visualization package.
+To understand TFs, we will first look at an existing robot model. As we did back in [*Chapter 3*](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_03.xhtml#_idTextAnchor095), here, we will discover the concepts by experimenting, and you will build an intuition of how things work. During this phase, you will discover a few new ROS tools, including **RViz**, a 3D visualization package.
 
 You will see for yourself how TFs work, how they are related to each other, and how to visualize the TF tree for any robot. By the end of this chapter, you will understand what TFs are, what problems they solve, and how they are used in a ROS 2 application.
 
 Good news: once you understand TFs, well, it’s the same principle for any ROS robot, so you can directly apply what you learn here to your future projects.
 
-This chapter will be quite small and quick to finish. We won’t write any code here, and there is no GitHub repository. All you have to do is follow the experiments. Not everything has to make sense right now; the goal is to get enough context to understand what we will be doing later. Don’t hesitate to come back to this chapter once you’ve finished _Part 3_.
+This chapter will be quite small and quick to finish. We won’t write any code here, and there is no GitHub repository. All you have to do is follow the experiments. Not everything has to make sense right now; the goal is to get enough context to understand what we will be doing later. Don’t hesitate to come back to this chapter once you’ve finished *Part 3*.
 
 In this chapter, we will cover the following subjects:
 
--   Visualizing a robot model in RViz
--   What are TFs?
--   Relationship between TFs
--   What problem are we trying to solve with TFs?
+- Visualizing a robot model in RViz
+- What are TFs?
+- Relationship between TFs
+- What problem are we trying to solve with TFs?
 
 ## Technical requirements
 
 At the beginning of the book, I gave you two options: either installing Ubuntu with a dual boot or in a virtual machine.
 
-If you chose the VM path, you should have been fine for all chapters in _Part 1_ and _Part 2_. For this chapter and the next two, we will use a 3D visualization tool (RViz) that might not work if your computer is not powerful enough.
+If you chose the VM path, you should have been fine for all chapters in *Part 1* and *Part 2*. For this chapter and the next two, we will use a 3D visualization tool (RViz) that might not work if your computer is not powerful enough.
 
-I would suggest first trying to run the commands from this chapter. If it doesn’t work well (it’s too slow, for example), then I strongly recommend you set up a dual boot with Ubuntu and ROS 2 (see the instructions in [_Chapter 2_](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_02.xhtml#_idTextAnchor051)). If RViz works fine, then continue like this for now. The dual boot will be required for [_Chapter 13_](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_13.xhtml#_idTextAnchor618).
+I would suggest first trying to run the commands from this chapter. If it doesn’t work well (it’s too slow, for example), then I strongly recommend you set up a dual boot with Ubuntu and ROS 2 (see the instructions in [*Chapter 2*](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_02.xhtml#_idTextAnchor051)). If RViz works fine, then continue like this for now. The dual boot will be required for [*Chapter 13*](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/library/view/ros-2-from/9781835881408/B22403_13.xhtml#_idTextAnchor618).
 
 ## Visualizing a robot model in RViz
 
@@ -67,9 +80,9 @@ A **Unified Robot Description Format** (**URDF**) file is basically the descript
 
 ```
 $ ls
-01-myfirst.urdf            04-materials.urdf    07-physics.urdf
-02-multipleshapes.urdf     05-visual.urdf        08-macroed.urdf.xacro
-03-origins.urdf            06-flexible.urdf
+01-myfirst.urdf            04-materials.urdf    07-physics.urdf
+02-multipleshapes.urdf     05-visual.urdf        08-macroed.urdf.xacro
+03-origins.urdf            06-flexible.urdf
 ```
 
 You can now start a robot model in RViz by launching the **display.launch.py** file and add the path to the robot model with an additional **model** argument after the launch file:
@@ -80,19 +93,19 @@ $ ros2 launch urdf_tutorial display.launch.py model:=/opt/ros/<distro>/share/urd
 
 Note
 
-To avoid errors, it’s better to provide the absolute path to the .**urdf** file, even if you run the command from the same folder.
+To avoid errors, it’s better to provide the absolute path to the.**urdf** file, even if you run the command from the same folder.
 
 After running the command, you should see something like this:
 
-![[attachments/B22403_10_1.jpg]]
+![Figure 10.1 – A robot model on RViz](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/B22403_10_1.jpg)
 
 Figure 10.1 – A robot model on RViz
 
-![[attachments/11.png]] **Quick tip**: Need to see a high-resolution version of this image? Open this book in the next-gen Packt Reader or view it in the PDF/ePub copy.
+![](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/11.png) **Quick tip**: Need to see a high-resolution version of this image? Open this book in the next-gen Packt Reader or view it in the PDF/ePub copy.
 
-![[attachments/21.png]] **The next-gen Packt Reader** and a **free PDF/ePub copy** of this book are included with your purchase. Unlock them by scanning the QR code below or visiting [https://www.packtpub.com/unlock/9781835881408](https://www.packtpub.com/unlock/9781835881408).
+![](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/21.png) **The next-gen Packt Reader** and a **free PDF/ePub copy** of this book are included with your purchase. Unlock them by scanning the QR code below or visiting [https://www.packtpub.com/unlock/9781835881408](https://www.packtpub.com/unlock/9781835881408).
 
-![[attachments/9781835881408.png]]
+![](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/9781835881408.png)
 
 You will get two windows: the main one (**RViz**) with the robot model, and a **Joint State Publisher** window with some cursors. The robot model we have here is a replica of a famous science-fiction movie robot. It has some wheels, a torso, a head, and a gripper.
 
@@ -112,11 +125,11 @@ Have a look at the menu on the left side of the **RViz** window. There, you will
 
 Disable **TF**, keep **RobotModel**, and expand the menu. There, you can find a submenu called **Links**.
 
-![[attachments/B22403_10_2.jpg]]
+![Figure 10.2 – RobotModel with Links menu on RViz](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/B22403_10_2.jpg)
 
 Figure 10.2 – RobotModel with Links menu on RViz
 
-Check and uncheck some boxes. As you can see from this menu, a _link_ is one rigid part (meaning one solid part with no articulation) of the robot. Basically, in ROS, a robot model will consist of a collection of rigid parts put together.
+Check and uncheck some boxes. As you can see from this menu, a *link* is one rigid part (meaning one solid part with no articulation) of the robot. Basically, in ROS, a robot model will consist of a collection of rigid parts put together.
 
 In this example, links are represented by basic shapes: boxes, cylinders, and spheres. Those rigid parts do nothing on their own, so how are they connected, and how do they move between each other?
 
@@ -126,23 +139,22 @@ This is where we introduce TFs.
 
 Let’s now check the **TF** box. You can keep **RobotModel** checked or unchecked. Inside the **TF** menu, you have a submenu called **Frames**, and you can also enable or disable each frame for the robot.
 
-![[attachments/B22403_10_3.jpg]]
+![Figure 10.3 – Frames and TFs on RViz](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/B22403_10_3.jpg)
 
 Figure 10.3 – Frames and TFs on RViz
 
 The axes you see here (red, green, and blue coordinate systems) represent the frames, or basically the origin of each link of the robot.
 
-Coordinate systems follow the right-hand rule in ROS. Following _Figure 10__.4_, you have the following:
+Coordinate systems follow the right-hand rule in ROS. Following *Figure 10**.4*, you have the following:
 
--   X axis (red) pointing forward
--   Y axis (green) pointing 90 degrees to the left
--   Z axis (blue) pointing up
-
-![[attachments/B22403_10_4.jpg]]
+- X axis (red) pointing forward
+- Y axis (green) pointing 90 degrees to the left
+- Z axis (blue) pointing up
+![Figure 10.4 – Convention for coordinate systems in ROS](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/B22403_10_4.jpg)
 
 Figure 10.4 – Convention for coordinate systems in ROS
 
-The arrows that you see between each frame in _Figure 10__.3_ are the relationship between each rigid part (link) of the robot. A TF is represented by an arrow.
+The arrows that you see between each frame in *Figure 10**.3* are the relationship between each rigid part (link) of the robot. A TF is represented by an arrow.
 
 Note
 
@@ -158,7 +170,7 @@ So, each rigid part will be linked to another rigid part, thanks to a TF. This t
 
 To make some parts of the robot move, you can move some of the cursors in the **Joint State Publisher** window. You will see the frames and TFs moving in RViz. If you also check the **RobotModel** box again, you will see the rigid parts moving as well.
 
-To better understand, here is an analogy with the human arm: we can define the parts of the arm as _arm_ (shoulder to elbow) and _forearm_ (after the elbow). Those two are rigid parts (here, links) and do not move on their own. Each link has an origin frame, and there is a TF that defines where the arm and forearm are connected (imagine an axis in the elbow), and how they move (in this case, it’s a rotation with a minimum and maximum angle).
+To better understand, here is an analogy with the human arm: we can define the parts of the arm as *arm* (shoulder to elbow) and *forearm* (after the elbow). Those two are rigid parts (here, links) and do not move on their own. Each link has an origin frame, and there is a TF that defines where the arm and forearm are connected (imagine an axis in the elbow), and how they move (in this case, it’s a rotation with a minimum and maximum angle).
 
 As we will see later in this chapter, TFs are tremendously important. If the TFs for a robot are not correctly defined, then nothing will work.
 
@@ -174,23 +186,23 @@ In addition to that, all the TFs for a robot are organized in a particular way, 
 
 Each TF will be connected to another TF, with a parent/child relationship. To see one, you can, for example, disable all TFs on RViz, and only check the **base\_link** and **gripper\_pole** frames.
 
-![[attachments/B22403_10_5.jpg]]
+![Figure 10.5 – The relationship between two frames](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/B22403_10_5.jpg)
 
 Figure 10.5 – The relationship between two frames
 
 As you can see in this example, an arrow is going from the **gripper\_pole** frame to the **base\_link** frame. This means that **gripper\_pole** is the child of **base\_link** (or, **base\_link** is the parent of **gripper\_pole**).
 
-If you look back at _Figure 10__.3_, you can see all the frames for the robot, with all the relationships between them (TFs).
+If you look back at *Figure 10**.3*, you can see all the frames for the robot, with all the relationships between them (TFs).
 
 The order of those relationships is very important. If you move **gripper\_pole** relative to **base\_link** (the **gripper\_extension** cursor in the **Joint State Publisher** window), then anything that’s attached to **gripper\_pole** (meaning children of **gripper\_pole**) will also move with it.
 
 That makes sense: when you rotate your elbow, your forearm is moving, but also your wrist, hand, and fingers. They don’t move relative to the forearm, but as they are attached to it, they move relative to the arm.
 
-Now, you can visualize all the links and TFs on RViz, see the relationship between TFs, and also how they are related to each other. Let’s go further with the **/****tf** topic.
+Now, you can visualize all the links and TFs on RViz, see the relationship between TFs, and also how they are related to each other. Let’s go further with the **/** **tf** topic.
 
 ## The /tf topic
 
-At this point, you might think that what we did in _Part 2_ of this book has nothing to do with what we are doing now. Well, everything we have seen here is still based on nodes, topics, and so on.
+At this point, you might think that what we did in *Part 2* of this book has nothing to do with what we are doing now. Well, everything we have seen here is still based on nodes, topics, and so on.
 
 Let’s list all nodes:
 
@@ -214,7 +226,7 @@ $ ros2 topic list
 /tf_static
 ```
 
-You can see that the nodes that were started are using topics to communicate with each other. In this topic list, we find the **/tf** topic. This topic will be there for any robot you create. The TFs you saw on RViz are actually the 3D visualization of this topic—meaning the **rviz** node is a subscriber to the **/****tf** topic.
+You can see that the nodes that were started are using topics to communicate with each other. In this topic list, we find the **/tf** topic. This topic will be there for any robot you create. The TFs you saw on RViz are actually the 3D visualization of this topic—meaning the **rviz** node is a subscriber to the **/** **tf** topic.
 
 You can subscribe to the topic from the terminal with the following:
 
@@ -227,28 +239,28 @@ If you do so, you will receive lots of messages. Here is an extract:
 ```
 transforms:
 - header:
-stamp:
-  sec: 1719581158
-  nanosec: 318170246
-frame_id: base_link
-  child_frame_id: gripper_pole
-  transform:
-translation:
-  x: 0.19
-  y: 0.0
-  z: 0.2
-rotation:
-  x: 0.0
-  y: 0.0
-  z: 0.0
-  w: 1.0
+    stamp:
+      sec: 1719581158
+      nanosec: 318170246
+    frame_id: base_link
+  child_frame_id: gripper_pole
+  transform:
+    translation:
+      x: 0.19
+      y: 0.0
+      z: 0.2
+    rotation:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      w: 1.0
 ```
 
 This extract matches what we previously saw on RViz. It represents the transformation between **base\_link** and **gripper\_pole**. Here are the important pieces of information we can get from this message:
 
--   Timestamp for the TF
--   Parent and child frame IDs
--   The actual transformation, with a translation and a rotation
+- Timestamp for the TF
+- Parent and child frame IDs
+- The actual transformation, with a translation and a rotation
 
 Note
 
@@ -282,7 +294,7 @@ You will get two new files, in the same directory as where you ran the command.
 
 Open the PDF file. You will see something like this (I’m just adding the left side of the image, otherwise the text would be too small to read in the book):
 
-![[attachments/B22403_10_6.jpg]]
+![Figure 10.6 – TF tree for a robot](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/B22403_10_6.jpg)
 
 Figure 10.6 – TF tree for a robot
 
@@ -312,15 +324,15 @@ There are two components here: we need to know where things are and when the tra
 
 Here are some concrete examples of some questions you could need to answer in a robotics application:
 
--   For one mobile robot, where is the right wheel relative to the left wheel and to the base of the robot? How does the wheel movement evolve over time?
--   If you have an application with a robotic arm and a camera, then where is the camera relative to the base of the robot? And to the hand of the robot, so that the arm can correctly pick up and place objects that were detected by the camera?
--   In another application with several mobile robots, where is each robot relative to the other ones?
--   If you combine the two previous examples, where is the hand of the robotic arm relative to the base of one of the mobile robots?
+- For one mobile robot, where is the right wheel relative to the left wheel and to the base of the robot? How does the wheel movement evolve over time?
+- If you have an application with a robotic arm and a camera, then where is the camera relative to the base of the robot? And to the hand of the robot, so that the arm can correctly pick up and place objects that were detected by the camera?
+- In another application with several mobile robots, where is each robot relative to the other ones?
+- If you combine the two previous examples, where is the hand of the robotic arm relative to the base of one of the mobile robots?
 
 So, with TFs, we want to know the following:
 
--   How frames are placed relative to each other
--   How they move relative to each other and over time
+- How frames are placed relative to each other
+- How they move relative to each other and over time
 
 This is required for a robot to correctly work with ROS.
 
@@ -338,7 +350,7 @@ For example, let’s say you need to know where **left\_front\_wheel** is relati
 
 Let’s visualize that on RViz:
 
-![[attachments/B22403_10_7.jpg]]
+![Figure 10.7 – Three transformations between four frames](https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/B22403_10_7.jpg)
 
 Figure 10.7 – Three transformations between four frames
 
@@ -356,12 +368,12 @@ You first discovered a 3D visualization tool used for ROS, named RViz. You will 
 
 Then, you discovered what TFs are, and why they are so important in a ROS application. Here’s a quick recap:
 
--   We need to keep track of each 3D coordinate frame over time, for the entire robotics application (one or several robots).
--   Instead of computing the transformations ourselves, we use the ROS TF functionality, with the **tf2** library. TFs are published on the **/****tf** topic.
--   TFs are organized into a structured tree that you can visualize.
--   A TF defines how two frames are connected, and how they move relative to each other, over time.
+- We need to keep track of each 3D coordinate frame over time, for the entire robotics application (one or several robots).
+- Instead of computing the transformations ourselves, we use the ROS TF functionality, with the **tf2** library. TFs are published on the **/** **tf** topic.
+- TFs are organized into a structured tree that you can visualize.
+- A TF defines how two frames are connected, and how they move relative to each other, over time.
 
-To specify TFs for a robot, we will have to create a robot model, named _URDF_. This robot model will then be used by the **robot\_state\_publisher** node (we will see this a bit later) to publish the TFs. The published TFs will then be used by other packages in your application.
+To specify TFs for a robot, we will have to create a robot model, named *URDF*. This robot model will then be used by the **robot\_state\_publisher** node (we will see this a bit later) to publish the TFs. The published TFs will then be used by other packages in your application.
 
 In the end, we won’t really interact with TFs directly. The most important thing in this chapter is to understand what TFs are, and why we need them. This will help you understand what you're doing in the next chapter, when you create a robot model.
 
@@ -369,4 +381,4 @@ If things are still a bit confusing for now, don’t worry too much. Continue wi
 
 Now, let’s jump to the next chapter and create our first robot model.
 
-<table id="table001-5"><colgroup></colgroup><colgroup><col></colgroup><colgroup><col></colgroup><tbody><tr><td><h4>Unlock this book’s exclusive benefits now</h4><p>This book comes with additional benefits designed to elevate your learning experience.</p></td><td rowspan="2"><p><img alt="" width="246" height="238" src="attachments/9781835881408.png"></p><p lang="en-US" xml:lang="en-US"><a href="https://www.packtpub.com/unlock/9781835881408" target="_blank" rel="noopener noreferrer">https://www.packtpub.com/unlock/9781835881408</a></p></td></tr><tr><td><p><em>Note: Have your purchase invoice ready before </em><span><em>you begin.</em></span></p></td></tr></tbody></table>
+<table><colgroup><col></colgroup> <colgroup><col></colgroup><tbody><tr><td><h4>Unlock this book’s exclusive benefits now</h4><p>This book comes with additional benefits designed to elevate your learning experience.</p></td><td rowspan="2"><p><img width="246" height="238" src="https://learning-oreilly-com.ezproxy.christchurchcitylibraries.com/api/v2/epubs/urn:orm:book:9781835881408/files/image/9781835881408.png"></p><p><a href="https://www.packtpub.com/unlock/9781835881408">https://www.packtpub.com/unlock/9781835881408</a></p></td></tr><tr><td><p><em>Note: Have your purchase invoice ready before </em><span><em>you begin.</em></span></p></td></tr></tbody></table>

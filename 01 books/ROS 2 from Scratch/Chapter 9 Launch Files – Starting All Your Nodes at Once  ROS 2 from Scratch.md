@@ -142,7 +142,7 @@ $ touch number_app.launch.xml
 
 Open the file, and let’s start to write the content for the launch file.
 
-First, you will need to open and close a **<launch>** tag. Everything you write will be between those two lines. This is the minimum code for an XML launch file:
+First, you will need to open and close a `<launch>` tag. Everything you write will be between those two lines. This is the minimum code for an XML launch file:
 
 ```
 &lt;launch&gt;
@@ -158,7 +158,7 @@ $ ros2 run my_py_pkg number_publisher
 $ ros2 run my_cpp_pkg number_counter
 ```
 
-Here, I started one node from the Python package and the other one from the C++ package. The two arguments we need to provide for **ros2 run** are the package name and executable name. This is the same inside a launch file. To add a node, use a **<node>** tag with the **pkg** and **exec** arguments:
+Here, I started one node from the Python package and the other one from the C++ package. The two arguments we need to provide for **ros2 run** are the package name and executable name. This is the same inside a launch file. To add a node, use a `<node>` tag with the **pkg** and **exec** arguments:
 
 ```
 &lt;launch&gt;
@@ -182,9 +182,9 @@ As we are starting nodes from the **my\_py\_pkg** and **my\_cpp\_pkg** packages,
 
 Note
 
-Previously, we only used a **<depend>** tag when specifying dependencies. In this case, there is nothing to build; we only need the dependency when executing the launch file. Thus, we use a weaker tag, **<exec\_depend>**.
+Previously, we only used a `<depend>` tag when specifying dependencies. In this case, there is nothing to build; we only need the dependency when executing the launch file. Thus, we use a weaker tag, `<exec\_depend>`.
 
-For each new package you use in your launch files, you will add a new **<exec\_depend>** tag in the **package.xml** file.
+For each new package you use in your launch files, you will add a new `<exec\_depend>` tag in the **package.xml** file.
 
 Now, we can install the launch file. To do so, you just need to build your package:
 
@@ -193,7 +193,7 @@ $ cd ~/ros2_ws/
 $ colcon build --packages-select my_robot_bringup
 ```
 
-Then, source your environment, and use the **ros2 launch** command-line tool to start the launch file. The full command is **ros2 launch <****package\_name> <launch\_file\_name>**:
+Then, source your environment, and use the **ros2 launch** command-line tool to start the launch file. The full command is **ros2 launch <****package\_name> <launch\_file\_name>`:
 
 ```
 $ ros2 launch my_robot_bringup number_app.launch.xml
@@ -311,7 +311,7 @@ Following this process will make your life easier when developing ROS 2 applicat
 
 Since I talked about including a Python launch file inside an XML launch file, let’s see how to do that. The syntax won’t be that complicated.
 
-Make sure you add everything inside **<launch></launch>** tags. To include another launch file, use an **<include>** tag. Here is an example:
+Make sure you add everything inside `<launch></launch>` tags. To include another launch file, use an `<include>` tag. Here is an example:
 
 ```
 &lt;launch&gt;
@@ -355,13 +355,13 @@ In this section, you will learn how to do that inside a launch file. We will als
 
 ## Renaming nodes and communications
 
-In an XML launch file, to rename a node, simply add a **name** argument in a **<****node>** tag:
+In an XML launch file, to rename a node, simply add a **name** argument in a `<****node>` tag:
 
 ```
 &lt;node pkg="your_package" exec="your_exec" name="new_name" /&gt;
 ```
 
-Changing the name for a topic/service/action is actually named _remapping_. To remap a communication, you have to use a **<remap>** tag, inside the **<****node>** tag:
+Changing the name for a topic/service/action is actually named _remapping_. To remap a communication, you have to use a `<remap>` tag, inside the `<****node>` tag:
 
 ```
 &lt;node pkg="your_package" exec="your_exec"&gt;
@@ -369,11 +369,11 @@ Changing the name for a topic/service/action is actually named _remapping_. To r
 &lt;/node&gt;
 ```
 
-You can add as many **<remap>** tags as you want, each one in a new line.
+You can add as many `<remap>` tags as you want, each one in a new line.
 
 Note
 
-This is a quick XML reminder, but it can be useful if you’re not used to XML and can prevent lots of errors in the future. For one-line tags, you open the tag and end it with **/>** (for example, **<node />**). If you need to add a tag inside a tag, you then have to open the tag and close it later, like we did for **<launch>...</launch>** or **<node>...</node>**.
+This is a quick XML reminder, but it can be useful if you’re not used to XML and can prevent lots of errors in the future. For one-line tags, you open the tag and end it with **/>` (for example, `<node />`). If you need to add a tag inside a tag, you then have to open the tag and close it later, like we did for `<launch>...</launch>` or `<node>...</node>`.
 
 From this, let’s say we want to start two **number\_publisher** nodes and one **number\_counter** node. On top of that, we also want to remap the topic from **number** to **my\_number**. Here is the full XML launch file:
 
@@ -391,7 +391,7 @@ From this, let’s say we want to start two **number\_publisher** nodes and one 
 &lt;/launch&gt;
 ```
 
-We rename the two **number\_publisher** nodes to avoid name conflicts. Then, we make sure to add the same **<remap>** tag for all nodes in which we use a publisher or subscriber on the **number** topic.
+We rename the two **number\_publisher** nodes to avoid name conflicts. Then, we make sure to add the same `<remap>` tag for all nodes in which we use a publisher or subscriber on the **number** topic.
 
 Additional tip
 
@@ -435,7 +435,7 @@ Setting parameters’ values for a node in a launch file is pretty straightforwa
 
 ### Setting parameters’ values directly
 
-To add a parameter’s value for a node in an XML launch file, you first need to open and close the **<node></node>** tag. Inside this tag, you will add one **<param>** tag per parameter, with two arguments: **name** and **value**.
+To add a parameter’s value for a node in an XML launch file, you first need to open and close the `<node></node>` tag. Inside this tag, you will add one `<param>` tag per parameter, with two arguments: **name** and **value**.
 
 Here is an example, where we set the **number** and **publish\_period** parameters for the **number\_publisher** node:
 
@@ -446,7 +446,7 @@ Here is an example, where we set the **number** and **publish\_period** paramete
 &lt;/node&gt;
 ```
 
-It will work the same as adding **\-p <parameter>:=<value>** after the **ros2** **run** command.
+It will work the same as adding `<parameter>:=<value>` after the **ros2** **run** command.
 
 Now, you can combine renaming, remapping, and setting parameters. Let’s add parameters to the previous example:
 
@@ -525,7 +525,7 @@ install(DIRECTORY
 
 You only need to do this once. Any other file inside the **config** directory will be installed when running **colcon build** for that package.
 
-Before we build the package, let’s modify the launch file so that we can use this YAML param file. The way to do this in XML is easy. You will add a **<param>** tag, but instead of **name** and **value**, you need to specify a **from** argument:
+Before we build the package, let’s modify the launch file so that we can use this YAML param file. The way to do this in XML is easy. You will add a `<param>` tag, but instead of **name** and **value**, you need to specify a **from** argument:
 
 ```
 &lt;node pkg="my_py_pkg" exec="number_publisher" name="num_pub2"&gt;
@@ -580,7 +580,7 @@ As you make progress with ROS 2 and learn new stacks and plugins, you will encou
 
 Adding a namespace to a node is quite straightforward.
 
-First of all, after the **ros2 run <package> <executable>** command, you add **\--ros-args** once. Then, to specify a namespace, you will write **\-r \_\_ns:=<namespace>**. The **\-r** option (or **\--remap**) is the same as the one for renaming a node, only instead of **\_\_node**, you use **\_\_ns** here.
+First of all, after the `ros2 run <package> <executable>` command, you add **\--ros-args** once. Then, to specify a namespace, you will write `-r \_\_ns:=<namespace>`. The **\-r** option (or **\--remap**) is the same as the one for renaming a node, only instead of **\_\_node**, you use **\_\_ns** here.
 
 Let’s start our **number\_publisher** node inside a **/****abc** namespace:
 
@@ -630,7 +630,7 @@ Now that you know how to provide a namespace for a node at runtime, let’s see 
 
 ### Specifying a namespace in a launch file
 
-To add a namespace to a node in an XML launch file, you just have to add a **namespace** argument inside the **<node>** tag. Let’s continue with our previous example:
+To add a namespace to a node in an XML launch file, you just have to add a **namespace** argument inside the `<node>` tag. Let’s continue with our previous example:
 
 ```
 &lt;node pkg="my_py_pkg" exec="number_publisher" name="num_pub1" <strong>namespace="/abc"</strong>&gt;
@@ -765,7 +765,7 @@ In this launch file, let’s start with something simple. We want to try to run 
 &lt;/launch&gt;
 ```
 
-As we are starting nodes from the **turtlesim** and **turtle\_controller** packages, we also add two new **<exec\_depend>** tags in the **package.xml** file:
+As we are starting nodes from the **turtlesim** and **turtle\_controller** packages, we also add two new `<exec\_depend>` tags in the **package.xml** file:
 
 ```
 &lt;exec_depend&gt;turtlesim&lt;/exec_depend&gt;
@@ -788,7 +788,7 @@ This is because we wrote **/turtle1/cmd\_vel** in the code, and not **turtle1/cm
 
 We have two options here: either we modify the code (we simply need to remove this leading slash) or we adapt the launch file to make this work. As specified in the challenge instructions, we are not going to modify the code. The reason why I’m adding this constraint is because, in real life, you won’t necessarily be able to modify the code of the nodes you run. Thus, knowing how to solve a name mismatch without touching the code is a great skill to have.
 
-So, if you look at the topic and service names (we don’t use actions here), you will see that we have two topics and one service to modify. Let’s add some **<remap>** tags inside the node:
+So, if you look at the topic and service names (we don’t use actions here), you will see that we have two topics and one service to modify. Let’s add some `<remap>` tags inside the node:
 
 ```
 &lt;node pkg="turtle_controller" exec="turtle_controller" namespace="t1"&gt;
