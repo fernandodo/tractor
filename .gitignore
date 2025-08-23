@@ -1,3 +1,4 @@
 # 先忽略 .obsidian 里的一切
 .obsidian/*
 .trash/*
+/.DS_Store
