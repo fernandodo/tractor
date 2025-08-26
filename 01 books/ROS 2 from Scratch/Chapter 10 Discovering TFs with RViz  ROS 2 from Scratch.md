@@ -96,7 +96,7 @@ Figure 10.1 – A robot model on RViz
 
 You will get two windows: the main one (**RViz**) with the robot model, and a **Joint State Publisher** window with some cursors. The robot model we have here is a replica of a famous science-fiction movie robot. It has some wheels, a torso, a head, and a gripper.
 
-Let’s focus on the main window (**RViz**) for now. Take some time to learn how to navigate in the 3D space and move around the robot. You can use the left click, right click, and mouse wheel. For this, it’s best to have a mouse, but you could still manage to navigate with the touchpad of a laptop, although it’s less ergonomic.
+Let’s focus on the main window (**RViz**) for now. Take some time to learn how to ==navigate in the 3D space== and move around the robot. You can use the ==left click, right click, and mouse wheel==. For this, it’s best to have a mouse, but you could still manage to navigate with the touchpad of a laptop, although it’s less ergonomic.
 
 You can also resize the window and the various sections inside RViz. Pretty much everything you see can be customized. Now that you can load a robot model in RViz, we will start to experiment with TFs.
 
@@ -142,7 +142,7 @@ Coordinate systems follow the right-hand rule in ROS. Following _Figure 10__.4_,
 
 Figure 10.4 – Convention for coordinate systems in ROS
 
-The arrows that you see between each frame in _Figure 10__.3_ are the relationship between each rigid part (link) of the robot. A TF is represented by an arrow.
+The arrows that you see between each frame in _Figure 10.3_ are the relationship between each rigid part (link) of the robot. A TF is represented by an arrow.
 
 Note
 
