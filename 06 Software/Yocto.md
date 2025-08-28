@@ -146,3 +146,4 @@
     
 - **构建步骤** = 进入 build 目录 → 配置 MACHINE/DISTRO → bitbake。
     
+# 
