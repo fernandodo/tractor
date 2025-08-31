@@ -180,7 +180,7 @@ Figure 10.5 – The relationship between two frames
 
 As you can see in this example, an arrow is going from the **gripper\_pole** frame to the **base\_link** frame. This means that **gripper\_pole** is the child of **base\_link** (or, **base\_link** is the parent of **gripper\_pole**).
 
-If you look back at _Figure 10__.3_, you can see all the frames for the robot, with all the relationships between them (TFs).
+If you look back at _Figure 10.3_, you can see all the frames for the robot, with all the relationships between them (TFs).
 
 The order of those relationships is very important. If you move **gripper\_pole** relative to **base\_link** (the **gripper\_extension** cursor in the **Joint State Publisher** window), then anything that’s attached to **gripper\_pole** (meaning children of **gripper\_pole**) will also move with it.
 
