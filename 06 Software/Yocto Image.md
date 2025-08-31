@@ -288,6 +288,241 @@ Together, they let you write clean image recipes that:
 - Weston itself will always start if enabled, but you can drop demos or Weston entirely for a smaller, headless ROS 2 system.
     
 
+## step-by-step way to append ROS to your vendor’s base image
+
 ---
 
-Would you like me to also outline **two concrete build targets** for STM32MP257 — one **with Weston (dev/demo)** and one **headless (ROS 2 production)** — so you can flip between them easily?
+### 0) Start from your vendor Yocto env (don’t change DISTRO/MACHINE)
+
+```bash
+# Use your normal vendor script (example names)
+source layers/meta-st*/scripts/envsetup.sh
+# …which sets MACHINE, DISTRO, TEMPLATECONF and calls poky/oe-init-build-env
+```
+
+> Keep the **same DISTRO/MACHINE** from the vendor. You’re only changing **what the image installs**.
+
+---
+
+### 1) Add the meta-ros layers
+
+In `conf/bblayers.conf`, add the three meta-ros layers (paths will match your checkout):
+
+```
+…/meta-ros/meta-ros-common \
+…/meta-ros/meta-ros2 \
+…/meta-ros/meta-ros2-jazzy     # or iron/humble to match your plan
+```
+
+> Make sure their **branch matches your Yocto series** (e.g., scarthgap). Mismatch = parse errors.
+
+---
+
+### 2) Configure ROS knobs (once) in `conf/local.conf`
+
+```conf
+# Choose the ROS 2 distribution meta-ros should build
+ROS_DISTRO = "jazzy"                 # or "iron"/"humble", supported by your meta-ros branch
+ROS_DISTRO_TYPE = "ros2"
+
+# Pick a DDS implementation (good default for Wi-Fi/embedded)
+PREFERRED_PROVIDER:rmw-implementation = "rmw-cyclonedds-cpp"
+```
+
+(Optional but handy at runtime)
+
+```conf
+# Pass the runtime RMW selection & CycloneDDS config into systemd services
+SYSTEMD_ENVIRONMENT:append = " RMW_IMPLEMENTATION=rmw_cyclonedds_cpp CycloneDDS_URI=/etc/cyclonedds.xml"
+```
+
+---
+
+### 3) Create your own “product” layer (clean place for changes)
+
+```bash
+# yocto-layer create meta-myprod   # not a univesal command
+bitbake-layers create-layer ../meta-myprod
+bitbake-layers add-layer ../meta-myprod
+```
+
+---
+
+### 4) Append ROS packages to the **vendor image** via `.bbappend`
+
+Create a file in your layer whose name **matches the vendor image PN**:
+
+```
+meta-myprod/
+  recipes-st/
+    images/
+      st-image-weston.bbappend     # if your base is st-image-weston
+# or:
+#   recipes-st/images/st-image-minimal.bbappend
+```
+
+Put this inside (pick one of the first two lines; keep the rest):
+
+```bitbake
+# Minimal ROS runtime set (smaller)…
+IMAGE_INSTALL:append = " ros-core"
+# …OR a slightly larger, convenient set:
+# IMAGE_INSTALL:append = " ros-base"
+
+# Add concrete bits you likely need on target
+IMAGE_INSTALL:append = " rmw-cyclonedds-cpp micro-ros-agent socketcan-bridge diagnostic-updater diagnostic-aggregator"
+
+# Optional space savings: drop vendor demos (keeps Weston if your base has it)
+CORE_IMAGE_EXTRA_INSTALL:remove = " packagegroup-st-demo"
+```
+
+> **Notes**
+> 
+> - `ros-core` = core ROS 2 runtime; `ros-base` = core + common tools (diagnostics, tf2, rosbag2 on many branches).
+>     
+> - If your base is **headless**, keep using it; adding ROS won’t pull a GUI unless you ask for it.
+>     
+> - If your base is **Weston**, this **does not** remove Weston—only the demo bundle if you use the `remove`.
+>     
+
+---
+
+### 5) (Optional) add a CycloneDDS config file
+
+Create a tiny recipe to ship `/etc/cyclonedds.xml`, then add that package to the image.
+
+**`meta-myprod/recipes-core/cyclonedds-config/cyclonedds-config.bb`**
+
+```bitbake
+SUMMARY = "CycloneDDS runtime configuration"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=0835f4b1…"
+SRC_URI = "file://cyclonedds.xml file://LICENSE"
+S = "${WORKDIR}"
+FILES:${PN} = "/etc/cyclonedds.xml"
+
+do_install() {
+  install -d ${D}/etc
+  install -m 0644 ${WORKDIR}/cyclonedds.xml ${D}/etc/
+}
+```
+
+**`meta-myprod/recipes-core/cyclonedds-config/cyclonedds.xml`**
+
+```xml
+<CycloneDDS>
+  <Domain id="any">
+    <General>
+      <AllowMulticast>false</AllowMulticast>
+    </General>
+    <Discovery>
+      <!-- Add peers if you need multi-host discovery -->
+      <!-- <PeerAddress>192.168.1.50</PeerAddress> -->
+    </Discovery>
+  </Domain>
+</CycloneDDS>
+```
+
+Add it to your image:
+
+```bitbake
+IMAGE_INSTALL:append = " cyclonedds-config"
+```
+
+---
+
+### 6) (Optional) auto-start micro-ROS Agent & bring up CAN
+
+Create small systemd units (either as files in your layer or via tiny recipes) and ensure they’re enabled.
+
+**`micro-ros-agent.service`**
+
+```ini
+[Unit]
+Description=micro-ROS Agent (serial)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/micro_ros_agent serial --dev /dev/ttySTM2 -b 115200
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**`can0.service`** (adapt bitrate/interface)
+
+```ini
+[Unit]
+Description=Bring up can0
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ip link set can0 up type can bitrate 500000
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+In your recipe, install them to `/lib/systemd/system/` and set:
+
+```bitbake
+SYSTEMD_AUTO_ENABLE:${PN} = "enable"
+```
+
+---
+
+### 7) Build the vendor image (now with ROS)
+
+```bash
+bitbake st-image-weston          # or your vendor base image name
+# or:
+# bitbake st-image-minimal
+```
+
+---
+
+### 8) Verify what actually went in
+
+```bash
+bitbake -e st-image-weston | grep -E '^(IMAGE_INSTALL=|CORE_IMAGE_EXTRA_INSTALL=|IMAGE_FEATURES=)'
+bitbake-layers show-appends | grep st-image-weston
+```
+
+On target:
+
+```bash
+ros2 --help
+ros2 doctor --report
+printenv RMW_IMPLEMENTATION          # if you exported it via SYSTEMD_ENVIRONMENT
+systemctl status micro-ros-agent
+```
+
+---
+
+### 9) Typical pitfalls (and fixes)
+
+- **Branch mismatch** (meta-ros vs your Yocto series): check out the matching branch before adding to `BBLAYERS`.
+    
+- **No image change**: your `.bbappend` filename must **match the PN** (e.g., `st-image-weston.bbappend`) and your layer must be **after** the vendor layer in `BBLAYERS` so your append is seen.
+    
+- **Pulling too much**: don’t use `ros-image-world` as a dependency—**images don’t compose**. Add **packagegroups** (`ros-core`/`ros-base`) or specific packages instead.
+    
+- **Multiple RMWs** installed:** set `PREFERRED_PROVIDER:rmw-implementation` and, if needed, `RMW_IMPLEMENTATION` at runtime.
+    
+
+---
+
+#### TL;DR
+
+1. Keep vendor env (DISTRO/MACHINE).
+    
+2. Add meta-ros layers; set `ROS_DISTRO` (+ `PREFERRED_PROVIDER`).
+    
+3. Create a **`.bbappend`** for the vendor image and **append** `ros-core` (or `ros-base`) + specific ROS packages.
+    
+4. (Optional) add DDS config & systemd services.
+    
+5. Build your **same vendor image**, now with ROS inside.
