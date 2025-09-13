@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"id":"d433b708acd498f6","type":"group","x":-160,"y":200,"width":920,"height":520,"label":"Examples"},
+		{"id":"168abb0af9858128","type":"text","text":"spell check on Canvas?","x":-560,"y":240,"width":250,"height":60,"color":"3"},
+		{"id":"77b83ac7670e49d7","type":"file","file":"05 BOM/BOM.canvas","x":340,"y":300,"width":400,"height":400},
+		{"id":"ce8401214f7f67d9","type":"file","file":"02 思路/Controller/Communication System.md","x":-140,"y":300,"width":400,"height":400},
+		{"id":"ba1268fe939820d9","type":"text","text":"this video has techs/skills to make good use of OC","x":215,"y":-20,"width":250,"height":60},
+		{"id":"6610c719212b45c5","x":-1051,"y":-322,"width":640,"height":360,"type":"link","url":"https://www.youtube.com/watch?v=NqfABACJ8fs"}
+	],
+	"edges":[
+		{"id":"d14bd3d1fa075265","fromNode":"ce8401214f7f67d9","fromSide":"top","toNode":"ba1268fe939820d9","toSide":"bottom"},
+		{"id":"8b98915591156ab7","fromNode":"77b83ac7670e49d7","fromSide":"top","toNode":"ba1268fe939820d9","toSide":"bottom"},
+		{"id":"e22b96cd2a299388","fromNode":"168abb0af9858128","fromSide":"bottom","toNode":"d433b708acd498f6","toSide":"left"},
+		{"id":"4cabfffbbb74ad79","fromNode":"ba1268fe939820d9","fromSide":"left","toNode":"6610c719212b45c5","toSide":"right"}
+	]
+}
