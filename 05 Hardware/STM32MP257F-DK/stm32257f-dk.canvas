@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"9a3c3c176a7dcf98","type":"file","file":"05 Hardware/STM32MP257F-DK/attachments/mb1605-mp257f-c01-schematic.pdf","x":-123,"y":656,"width":400,"height":400},
+		{"id":"20c32fc311622ba7","type":"file","file":"05 Hardware/STM32MP257F-DK/attachments/stm32mp257f-dk.pdf","x":-822,"y":372,"width":400,"height":400},
+		{"id":"90f2d053d801e54b","type":"file","file":"05 Hardware/STM32MP257F-DK/attachments/Pasted image 20250914105129.png","x":-66,"y":-420,"width":400,"height":343},
+		{"id":"db943ec51ce08bc7","type":"link","url":"https://wiki.st.com/stm32mpu/wiki/STM32MP25_Discovery_kits_-_Starter_Package","x":-674,"y":-227,"width":400,"height":400},
+		{"id":"2bb9e9b0086c668f","type":"link","url":"https://www.st.com/en/evaluation-tools/b-lvds7-wsvga.html","x":460,"y":-477,"width":400,"height":400},
+		{"id":"9ae2b6cd52ef6ad9","type":"link","url":"https://www.st.com/en/evaluation-tools/stm32mp257f-dk.html","x":-168,"y":56,"width":400,"height":400}
+	],
+	"edges":[
+		{"id":"8bdde43dbf183b1f","fromNode":"90f2d053d801e54b","fromSide":"right","toNode":"2bb9e9b0086c668f","toSide":"left"}
+	]
+}

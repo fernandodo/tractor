@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"b0e49e957b95bb8e","x":-397,"y":-444,"width":400,"height":400,"type":"file","file":"05 Hardware/Camera.canvas"},
+		{"id":"8665acad2b0b30d2","type":"link","url":"https://www.aliexpress.com/item/1005007819861987.html?src=google&pdp_npi=4%40dis!NZD!10.88!3.37!!!!!%40!12000042324844304!ppc!!!&snps=y&snpsid=1&src=google&albch=shopping&acnt=742-864-1166&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=_oDeeeiG&gclsrc=aw.ds&&albagn=888888&&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en1005007819861987&ds_e_product_merchant_id=5551326180&ds_e_product_country=NZ&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=22492609087&albag=&isSmbAutoCall=false&needSmbHouyi=false&gad_source=1&gad_campaignid=22482571098&gclid=CjwKCAjwwNbEBhBpEiwAFYLtGBtjSqa9rn318zsZOFpOStDL0PsiLSyPNNmdIGqZFy3rdEUKeKUsNBoCFtsQAvD_BwE","x":180,"y":-240,"width":840,"height":760},
+		{"id":"e8ab758ca9eeb969","type":"link","url":"https://www.digikey.co.nz/en/products/detail/stmicroelectronics/STM32MP257F-DK/25862908","x":180,"y":-760,"width":820,"height":400},
+		{"id":"7e3050b378f41c5b","type":"link","url":"https://nz.element14.com/infineon/demobgt60ltr11aiptobo1/demo-board-radar-sensor/dp/3625338","x":-380,"y":140,"width":400,"height":400}
+	],
+	"edges":[]
+}
