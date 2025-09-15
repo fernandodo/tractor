@@ -1,0 +1,35 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Repository Overview
+
+This directory contains Vim learning materials and documentation, specifically focused on Vim editor commands and usage patterns. It's part of an Obsidian knowledge vault documenting various programming tools and techniques.
+
+## File Structure
+
+- **Vim 从入门到精通.md** - Comprehensive Vim tutorial in Chinese covering everything from basics to advanced usage
+- **vscode_vim_stage12_cheatsheet.md** - Concise cheat sheet with essential Vim commands for beginners
+- **vscode_vim_stage12_cheatsheet_with_copy_paste.md** - Extended version including detailed copy/paste operations
+
+## Content Focus
+
+The materials cover:
+- Modal editing concepts (Normal, Insert, Visual, Command modes)
+- Movement commands (`hjkl`, `w/e/b`, `0/$`)
+- Text objects and operators (`d`, `y`, `c` with motions)
+- Search and navigation (`/`, `n`, `*`)
+- VSCode Vim integration specifics
+
+## Working with These Files
+
+When editing or enhancing these materials:
+- Maintain the pedagogical structure with examples
+- Keep command explanations concise but practical
+- Include real code examples for context
+- Preserve the bilingual nature (Chinese main guide, English cheat sheets)
+- Focus on practical, commonly-used commands over obscure features
+
+## Git Context
+
+This is part of a larger Obsidian vault with automated backups. The directory structure suggests this is educational content rather than executable code.
