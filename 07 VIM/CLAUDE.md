@@ -8,18 +8,20 @@ This directory contains Vim learning materials and documentation, specifically f
 
 ## File Structure
 
-- **Vim 从入门到精通.md** - Comprehensive Vim tutorial in Chinese covering everything from basics to advanced usage
-- **vscode_vim_stage12_cheatsheet.md** - Concise cheat sheet with essential Vim commands for beginners
-- **vscode_vim_stage12_cheatsheet_with_copy_paste.md** - Extended version including detailed copy/paste operations
+- **Vim 从入门到精通.md** - Comprehensive Vim tutorial in Chinese (104KB) covering everything from basics to advanced usage, sourced from vim-galore
+- **vscode_vim_stage12_cheatsheet_with_copy_paste.md** - Practical cheat sheet with checkbox-based learning progression and real-world code examples
+- **Vim 修改命令 c 系列完整对照表.md** - Complete reference table for Vim's `c` (change) command series with detailed examples and use cases
 
 ## Content Focus
 
 The materials cover:
 - Modal editing concepts (Normal, Insert, Visual, Command modes)
-- Movement commands (`hjkl`, `w/e/b`, `0/$`)
+- Movement commands (`hjkl`, `w/e/b`, `0/$`, `gg/G`, `H/M/L`)
 - Text objects and operators (`d`, `y`, `c` with motions)
-- Search and navigation (`/`, `n`, `*`)
+- Advanced change commands (`ciw`, `ci"`, `ci(`, `ct`, `cf`)
+- Search and navigation (`/`, `n`, `*`, `gd`)
 - VSCode Vim integration specifics
+- Progressive learning with checkboxes and practical examples
 
 ## Working with These Files
 
@@ -29,6 +31,9 @@ When editing or enhancing these materials:
 - Include real code examples for context
 - Preserve the bilingual nature (Chinese main guide, English cheat sheets)
 - Focus on practical, commonly-used commands over obscure features
+- Maintain checkbox format for tracking learning progress in cheat sheets
+- Use consistent table formatting for command reference materials
+- Include both command syntax and practical usage examples
 
 ## Git Context
 
