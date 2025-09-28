@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"06ef13410af7434f","type":"text","text":"mini Uart\n- `ttyAMA0` = 硬件 **PL011**（时钟独立，波特率稳定）。\n    \n- `ttyS0` = **mini-UART**（受核心频率影响，低负载建议也够用）。\n- 但默认`ttyS0`, 如何切换?\n- 若使用 **mini-UART (ttyS0)**，高波特在高负载或变频时可能不稳；追求稳定选 **PL011 (ttyAMA0)** + `dtoverlay=disable-bt`。","x":92,"y":-155,"width":250,"height":355},
+		{"id":"f6fc301ebb6458f3","type":"text","text":"Q&As","x":-300,"y":-7,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"674bdd328f156952","fromNode":"f6fc301ebb6458f3","fromSide":"right","toNode":"06ef13410af7434f","toSide":"left"}
+	]
+}

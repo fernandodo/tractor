@@ -9,3 +9,9 @@ The datasheet.
 > LVDS connector
 
 ![[Pasted image 20250914115821.png]]
+
+> ([[mb1605-mp257f-c01-schematic.pdf#page=16&selection=4,0,5,6&color=red|mb1605-mp257f-c01-schematic, p.16]])
+> EXPANSION_Connector
+![[Pasted image 20250927205157.png]]
+![[Pasted image 20250927205253.png]] 
+![[Pasted image 20250927205313.png]]
