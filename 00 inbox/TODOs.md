@@ -1,3 +1,3 @@
 ## TODOs:
 - [x] nappies
-- [ ] ticket
+- [x] ticket
