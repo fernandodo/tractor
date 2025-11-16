@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"be1a5102011fa754","type":"file","file":"05 Hardware/RTK/LC29H.canvas","x":-540,"y":-140,"width":400,"height":400},
+		{"id":"ca97a050d338e8aa","type":"link","url":"https://chatgpt.com/g/g-p-68e9b5195d10819187663fa2ddfe43d8/c/68e9c5e3-d144-8321-a2d2-e1e84cc0db22","x":-107,"y":-105,"width":447,"height":425},
+		{"id":"9d32dbb47ad360f7","type":"link","url":"https://chatgpt.com/g/g-p-68c91cce4e088191a11eafffd3ecf4fa/c/68ce2e3f-e5bc-832f-b4eb-90cf3c27ca8f","x":-107,"y":360,"width":400,"height":400},
+		{"id":"23a62f090fc39ebb","x":-107,"y":880,"width":400,"height":400,"type":"link","url":"https://chatgpt.com/g/g-p-68c91cce4e088191a11eafffd3ecf4fa/c/68f69b4f-a860-8324-9c02-b6e8a1701b52"}
+	],
+	"edges":[]
+}
