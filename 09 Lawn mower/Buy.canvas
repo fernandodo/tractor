@@ -1,0 +1,8 @@
+{
+	"nodes":[
+		{"id":"27c30b5737e093c4","x":-420,"y":-540,"width":740,"height":460,"type":"link","url":"https://www.alibaba.com/product-detail/25hp-Smart-Lawn-Mower-1000mm-Cutting_1601488910175.html?spm=a2700.details.buy_together.4.12f313a1Y76YrP"},
+		{"id":"673efd40e5effc3f","x":-420,"y":-20,"width":740,"height":500,"type":"link","url":"https://www.alibaba.com/product-detail/Lawn-Mower-Gasoline-Farm-Crawler-Wheel_1601399508398.html?spm=a27aq.27095423.1978240560.88.78372277DbnjAK"},
+		{"id":"0ef8ca57a184e348","x":-582,"y":579,"width":962,"height":581,"type":"link","url":"https://www.alibaba.com/product-detail/Agricultural-Self-propelled-Robot-Remote-controlled_1601489577097.html?spm=a27aq.27095423.1978240560.1.78372277GmcLV1"}
+	],
+	"edges":[]
+}
