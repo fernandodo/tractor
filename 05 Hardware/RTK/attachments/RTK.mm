@@ -3,7 +3,7 @@
 <bookmarks>
     <bookmark nodeId="ID_1090958577" name="Root" opensAsRoot="true"/>
 </bookmarks>
-<node TEXT="Mindmap" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1759528846034"><hook NAME="MapStyle" background="#2e3440ff">
+<node TEXT="Mindmap" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1090958577" CREATED="1409300609620" MODIFIED="1765751184544"><hook NAME="MapStyle" background="#2e3440ff">
     <properties show_icon_for_attributes="true" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" auto_compact_layout="true" show_tags="UNDER_NODES" show_note_icons="true" associatedTemplateLocation="template:/dark_nord_template.mm" followedTemplateLocation="template:/dark_nord_template.mm" followedMapLastTime="1755874924000" fit_to_viewport="false" show_icons="BESIDE_NODES" showTagCategories="false"/>
     <tags category_separator="::"/>
 
@@ -85,7 +85,7 @@
 </hook>
 <hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
 <font BOLD="true"/>
-<node TEXT="others" POSITION="top_or_left" ID="ID_1913475147" CREATED="1759528797896" MODIFIED="1759528846033" HGAP_QUANTITY="268.24999 pt" VSHIFT_QUANTITY="-180.74999 pt">
+<node TEXT="others" POSITION="top_or_left" ID="ID_1913475147" CREATED="1759528797896" MODIFIED="1765751184542" HGAP_QUANTITY="142.99999 pt" VSHIFT_QUANTITY="-55.49999 pt">
 <node TEXT="guer orphan attachments" POSITION="top_or_left" ID="ID_1002762862" CREATED="1759528764505" MODIFIED="1759528787097"/>
 <node TEXT="3d &amp; 2d viewer" POSITION="top_or_left" ID="ID_1871047059" CREATED="1759530778872" MODIFIED="1759530789465"/>
 </node>
