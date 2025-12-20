@@ -11,7 +11,8 @@
 		{"id":"1cd7689e66d5dff6","type":"file","file":"05 Hardware/RTK/attachments/Quectel_LC29H(BA_2CCA_2CDA_2CEA)_26QLM29H_Series_DR_26RTK_Application_Note_V1.3.pdf","x":1307,"y":1000,"width":400,"height":400},
 		{"id":"fe9a9c7044233299","type":"file","file":"05 Hardware/RTK/attachments/quectel_lc29hbacadaealc79hel_drrtk_application_note_v1-6.pdf","x":2000,"y":1000,"width":400,"height":400},
 		{"id":"77aaf89280fecf9f","type":"file","file":"05 Hardware/RTK/attachments/Quectel_LC29HBS_GNSS_Protocol_Specification_V1.1.pdf","x":1840,"y":-61,"width":400,"height":400},
-		{"id":"c4695f7ec88a347b","type":"file","file":"05 Hardware/RTK/attachments/black board LC29H specification V1.02.pdf","x":460,"y":440,"width":400,"height":400}
+		{"id":"c4695f7ec88a347b","type":"file","file":"05 Hardware/RTK/attachments/black board LC29H specification V1.02.pdf","x":460,"y":440,"width":400,"height":400},
+		{"id":"652216a6a9033641","x":-260,"y":1080,"width":400,"height":400,"type":"file","file":"05 Hardware/RTK/attachments/quectel_gnss_rtk_application_note_v1-0.pdf"}
 	],
 	"edges":[]
 }
