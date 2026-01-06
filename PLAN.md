@@ -1,0 +1,13 @@
+- firmware skill set:
+  - pytest
+  - gdb
+  - vscode json...那些按钮，跟命令的对应关系，是跟插件相关还是有普遍的规律？
+- update resume
+  -  align my skills with resume
+- typing and hand-writing
+- C++
+  - interview points
+- English
+  - Morning reading
+  - New words
+- Writing in Chinese
